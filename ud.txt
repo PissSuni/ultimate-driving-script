@@ -1,0 +1,214 @@
+local udgui = Instance.new("ScreenGui")
+local mainframe = Instance.new("Frame")
+local creditstextbox = Instance.new("TextLabel")
+local lineundercredits = Instance.new("Frame")
+local carspeedbutton = Instance.new("TextButton")
+local speedcameradestroybutton = Instance.new("TextButton")
+local autofarmtutorial = Instance.new("TextLabel")
+local infiniteyieldbutton = Instance.new("TextButton")
+local autofarmbutton = Instance.new("TextButton")
+local autofarmtutorial_2 = Instance.new("TextLabel")
+local autofarmtutorial_3 = Instance.new("TextLabel")
+
+
+udgui.Name = "udgui"
+udgui.Parent = game.CoreGui
+
+mainframe.Name = "mainframe"
+mainframe.Parent = udgui
+mainframe.BackgroundColor3 = Color3.fromRGB(49, 49, 49)
+mainframe.BorderColor3 = Color3.fromRGB(252, 0, 0)
+mainframe.BorderSizePixel = 0
+mainframe.Position = UDim2.new(0.179448977, 0, 0.349693239, 0)
+mainframe.Size = UDim2.new(0, 169, 0, 244)
+mainframe.Active = true
+mainframe.Draggable = true
+
+creditstextbox.Name = "creditstextbox"
+creditstextbox.Parent = mainframe
+creditstextbox.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+creditstextbox.BackgroundTransparency = 1.000
+creditstextbox.BorderSizePixel = 0
+creditstextbox.Position = UDim2.new(0.189349055, 0, 0, 0)
+creditstextbox.Size = UDim2.new(0, 105, 0, 15)
+creditstextbox.Font = Enum.Font.SourceSans
+creditstextbox.Text = "Made by UbiquitousGaming"
+creditstextbox.TextColor3 = Color3.fromRGB(255, 255, 255)
+creditstextbox.TextSize = 14.000
+
+lineundercredits.Name = "lineundercredits"
+lineundercredits.Parent = mainframe
+lineundercredits.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+lineundercredits.BorderSizePixel = 0
+lineundercredits.Position = UDim2.new(0, 0, 0.0655737668, 0)
+lineundercredits.Size = UDim2.new(0, 169, 0, 1)
+
+carspeedbutton.Name = "carspeedbutton"
+carspeedbutton.Parent = mainframe
+carspeedbutton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+carspeedbutton.BackgroundTransparency = 1.000
+carspeedbutton.BorderSizePixel = 0
+carspeedbutton.Position = UDim2.new(-4.51443469e-08, 0, 0.0655737668, 0)
+carspeedbutton.Size = UDim2.new(0, 169, 0, 26)
+carspeedbutton.Font = Enum.Font.SciFi
+carspeedbutton.Text = "Car Speed"
+carspeedbutton.TextColor3 = Color3.fromRGB(255, 85, 0)
+carspeedbutton.TextSize = 14.000
+carspeedbutton.MouseButton1Down:connect(function()
+	mouse = game:service'Players'.LocalPlayer:GetMouse()
+	mouse.KeyDown:Connect(function(key)
+		if key == "W" or key == "w" then
+			for i,v in pairs(workspace["_Main"].Vehicles:GetDescendants()) do 
+				if v:IsA"VehicleSeat" then 
+					if v.Occupant == game:service'Players'.LocalPlayer.Character:FindFirstChildOfClass'Humanoid' then 
+						car = v.Parent
+						car.PrimaryPart = car.Core.HitBox   
+					end
+				end
+			end
+			W = true
+		end
+	end)
+	mouse.KeyUp:Connect(function(key)
+		if key == "W" or key == "w" then
+			W = false
+		end
+	end)
+	mouse.KeyDown:Connect(function(key)
+		if key == "S" or key == "s" then
+			S = true
+		end
+	end)
+	mouse.KeyUp:Connect(function(key)
+		if key == "S" or key == "s" then
+			S = false
+		end
+	end)
+	for i,v in pairs(workspace["_Main"].Vehicles:GetDescendants()) do 
+		if v:IsA"VehicleSeat" then 
+			if v.Occupant == game:service'Players'.LocalPlayer.Character:FindFirstChildOfClass'Humanoid' then 
+				car = v.Parent
+				car.PrimaryPart = car.Core.HitBox   
+			end
+		end
+	end
+	game:service'RunService'.Stepped:Connect(function()
+		if W then
+			for i,v in pairs(car:GetDescendants()) do 
+				if v:IsA"BasePart" then 
+					v.Velocity = v.Velocity*1.01
+				end
+			end
+		end
+		if S then
+			for i,v in pairs(car:GetDescendants()) do 
+				if v:IsA"BasePart" then 
+					v.Velocity = v.Velocity*0.95
+				end
+			end
+		end
+	end)
+end)
+
+speedcameradestroybutton.Name = "speedcameradestroybutton"
+speedcameradestroybutton.Parent = mainframe
+speedcameradestroybutton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+speedcameradestroybutton.BackgroundTransparency = 1.000
+speedcameradestroybutton.BorderSizePixel = 0
+speedcameradestroybutton.Position = UDim2.new(-0.00684930012, 0, 0.172131151, 0)
+speedcameradestroybutton.Size = UDim2.new(0, 170, 0, 26)
+speedcameradestroybutton.Font = Enum.Font.SciFi
+speedcameradestroybutton.Text = "Speed Camera Destroy"
+speedcameradestroybutton.TextColor3 = Color3.fromRGB(255, 85, 0)
+speedcameradestroybutton.TextSize = 14.000
+speedcameradestroybutton.MouseButton1Down:connect(function()
+	superfunction = print
+	local descendants = game.Workspace:GetDescendants()
+
+	for index, descendant in pairs(descendants) do
+		if descendant.Name == "SpeedTrap" then
+			descendant:Destroy()
+		end
+	end
+	superfunction("Successfully removed speed cameras! Subscribe to UbiquitousGaming on YouTube!")
+end)
+
+autofarmtutorial.Name = "autofarmtutorial"
+autofarmtutorial.Parent = mainframe
+autofarmtutorial.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+autofarmtutorial.BackgroundTransparency = 1.000
+autofarmtutorial.BorderSizePixel = 0
+autofarmtutorial.Position = UDim2.new(0.011834274, 0, 0.27868852, 0)
+autofarmtutorial.Size = UDim2.new(0, 168, 0, 18)
+autofarmtutorial.Font = Enum.Font.Cartoon
+autofarmtutorial.Text = "1. Press Auto-Farm button"
+autofarmtutorial.TextColor3 = Color3.fromRGB(255, 255, 127)
+autofarmtutorial.TextSize = 14.000
+
+infiniteyieldbutton.Name = "infiniteyieldbutton"
+infiniteyieldbutton.Parent = mainframe
+infiniteyieldbutton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+infiniteyieldbutton.BackgroundTransparency = 1.000
+infiniteyieldbutton.BorderSizePixel = 0
+infiniteyieldbutton.Position = UDim2.new(0.00591711467, 0, 0.590163887, 0)
+infiniteyieldbutton.Size = UDim2.new(0, 169, 0, 26)
+infiniteyieldbutton.Font = Enum.Font.SciFi
+infiniteyieldbutton.Text = "Infinite Yield"
+infiniteyieldbutton.TextColor3 = Color3.fromRGB(255, 85, 0)
+infiniteyieldbutton.TextSize = 14.000
+infiniteyieldbutton.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
+end)
+
+autofarmbutton.Name = "autofarmbutton"
+autofarmbutton.Parent = mainframe
+autofarmbutton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+autofarmbutton.BackgroundTransparency = 1.000
+autofarmbutton.BorderSizePixel = 0
+autofarmbutton.Position = UDim2.new(-4.51443469e-08, 0, 0.483606577, 0)
+autofarmbutton.Size = UDim2.new(0, 169, 0, 26)
+autofarmbutton.Font = Enum.Font.SciFi
+autofarmbutton.Text = "Auto-Farm"
+autofarmbutton.TextColor3 = Color3.fromRGB(255, 85, 0)
+autofarmbutton.TextSize = 14.000
+autofarmbutton.MouseButton1Down:connect(function()
+	loadstring(game:HttpGet('https://raw.githubusercontent.com/PissSuni/ultimate-driving-car-speed/main/script.txt'))()
+end)
+
+autofarmtutorial_2.Name = "autofarmtutorial"
+autofarmtutorial_2.Parent = mainframe
+autofarmtutorial_2.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+autofarmtutorial_2.BackgroundTransparency = 1.000
+autofarmtutorial_2.BorderSizePixel = 0
+autofarmtutorial_2.Position = UDim2.new(0.0118342638, 0, 0.352459013, 0)
+autofarmtutorial_2.Size = UDim2.new(0, 168, 0, 18)
+autofarmtutorial_2.Font = Enum.Font.Cartoon
+autofarmtutorial_2.Text = "2. Press Infinite Yield button"
+autofarmtutorial_2.TextColor3 = Color3.fromRGB(255, 255, 127)
+autofarmtutorial_2.TextSize = 14.000
+
+autofarmtutorial_3.Name = "autofarmtutorial"
+autofarmtutorial_3.Parent = mainframe
+autofarmtutorial_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+autofarmtutorial_3.BackgroundTransparency = 1.000
+autofarmtutorial_3.BorderSizePixel = 0
+autofarmtutorial_3.Position = UDim2.new(0, 0, 0.426229507, 0)
+autofarmtutorial_3.Size = UDim2.new(0, 168, 0, 14)
+autofarmtutorial_3.Font = Enum.Font.Cartoon
+autofarmtutorial_3.Text = "3. Type in \"autokeypress w 0\""
+autofarmtutorial_3.TextColor3 = Color3.fromRGB(255, 255, 127)
+autofarmtutorial_3.TextSize = 14.000
+
+-- Scripts:
+
+local function CZQW_fake_script() -- creditstextbox.bordercolorscript 
+	local script = Instance.new('LocalScript', creditstextbox)
+
+	while true do
+		for a = 1,360,1 do
+			wait(0.1)
+			script.Parent.TextColor3 = Color3.fromHSV(a/360,1,1)
+		end
+	end
+end
+coroutine.wrap(CZQW_fake_script)()
